@@ -22,10 +22,6 @@
 		else : $connect->set_charset("utf8");											// méthode de $connect qui dit que tous les échanges entre php et db seront en utf8
 	endif;
 
-// FONCTIONS
-	function myPrint_r($data){
-		echo '<pre class ="php-error">';
-			print_r($data);
-		echo "</pre>";
-	}
+// importe les fonctions
+	require_once("functions.php");
 ?>

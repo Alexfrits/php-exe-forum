@@ -72,7 +72,7 @@
       '<form action="question-detail.php" method="post">
         <label for="reponse">
           <span>Votre réponse :</span>
-          <textarea id="reponse" name="reponse"></textarea>
+          <textarea id="reponse" name="reponse" required></textarea>
         </label>
         <input type="hidden" name="id_auteur" value="'.$_SESSION['auteur']->idauteurs.'">
         <input type="hidden" name="id_question" value="'.$_GET['id_question'].'">

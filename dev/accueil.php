@@ -51,13 +51,15 @@
 	</ul>
 <?php // HTML conditionnel : n'affiche le form que s'il y a une session
 	if(isset($_SESSION['auteur'])) :
-		myPrint_r($_SESSION);
 		echo
-			'<form action="accueil.php" method="post">
-				<label for="question"></label>
-				<textarea id="question" name="question"></textarea>
-				<label for="objet">Objet:</label>
-				<input type="text" name="objet" id="objet">
+			'<form action="accueil.php" method="post" class="form--post">
+				<label for="objet">
+					<span>Objet:</span>
+					<input type="text" name="objet" id="objet" required>
+				</label>
+				<label for="question"><span>votre question</span>
+					<textarea id="question" name="question" required></textarea>
+				</label>
 				<input type="hidden" name="id_auteur" value="'.$_SESSION['auteur']->idauteurs.'">
 				<input type="submit" value="répondre" name="newQuestion">
 			</form>';
