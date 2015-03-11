@@ -1,0 +1,12 @@
+.admin-tableau {
+	font-size: 1.4rem;
+	tr {
+		&:nth-of-type(odd){
+		background-color: lighten($third-color, 15%);
+		}
+	}
+
+	td {
+		padding: 1rem;
+	}
+}

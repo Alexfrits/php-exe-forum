@@ -1,0 +1,99 @@
+.php-error {
+	color: red;
+	font-size: 1.4rem;
+	font-family: monospace;
+}
+
+body {
+	font-family: "Merriweather Sans", sans-serif;
+}
+
+a{
+	color: $second-color;
+}
+
+header {
+	background-color: $main-color;
+	margin: 0 0 2rem;
+	padding: 2rem;
+	font-size: 3rem;
+	overflow: hidden;
+
+	h1{
+		text-transform: uppercase;
+		font-weight: 300;
+	}
+
+	.login-form {
+		display: block;
+		font-size: 1.4rem;
+		float: right;
+
+		label {
+			display: block;
+			width: 100%;
+			clear: both;
+			margin-bottom: 1rem;
+
+			span {
+				float: left;
+			}
+
+			input {
+				width: 50%;
+				float: right;
+			}
+		}
+
+	
+
+	}
+}
+
+main {
+	h1 {
+		font-size: 3rem;
+		margin-bottom: 2rem;
+		text-transform: uppercase;
+	}
+	h2 {
+		font-size: 2rem;
+		font-weight: 300;
+	}
+	display: block;
+	width: 80%;
+	margin: 0 auto;
+}
+.questlist {
+
+}
+
+.question {
+	display: block;
+	margin-bottom: 3rem;
+	box-shadow: 0px 0px 10px 0px lighten($second-color, 20%);
+	padding: 2rem;
+}
+
+.question__auth {
+	font-size: 1.4rem;
+	font-style: italic;
+}
+
+strong {
+color: $third-color;
+}
+		
+footer {
+	@extend header;
+	font-size: 1rem;
+	text-align: center;
+}
+
+// error
+
+.error--log {
+	background-color: white;
+	color: red;
+	display: block;
+}

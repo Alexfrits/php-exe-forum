@@ -1,0 +1,53 @@
+*,
+*:before,
+*:after {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+			box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+	padding: 0;
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+}
+
+td,
+tr {
+	border: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #000;
+}
+
+body,
+p {
+	margin: 0;
+	padding: 0;
+}
+
+blockquote {
+	margin: 0;
+}
+
+figure {
+	margin: 0;
+}
+
+ul,
+ol {
+	padding: 0;
+	margin:0;
+	list-style-type: none;
+}
