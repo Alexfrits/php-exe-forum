@@ -61,3 +61,6 @@ node_modules
 ### Sass ###
 .sass-cache
 *.css.map
+
+### OTHER ###
+prod/
