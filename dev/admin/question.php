@@ -2,16 +2,20 @@
 require_once('../config.php');
 
 // on a cliqué sur delete d'une question
-	if(isset($_GET['delete'])) : 
+	if(isset($_GET['delete'])) :
 		$sql = sprintf("DELETE FROM question WHERE idquestion ='%s'",
 										$_GET['delete']);
 
 		$connect->query($sql);
-	// on supprime aussi ses réponses
+// on supprime aussi ses réponses
 		$sql = sprintf("DELETE FROM reponses WHERE idquestion ='%s'",
 										$_GET['delete']);
 
 		$connect->query($sql);
+
+// on supprime aussi les images qui s'y rapportent
+
+							// *** CODE *** //
 
 		header("location:index.php"); exit;
 	endif;
@@ -50,11 +54,17 @@ require_once('../config.php');
 		echo $connect->error;?>
 
 
-</header>
+
 		<?php // bouton edit 
 
 		if ($result->num_rows > 0):
-  		while($row = $result->fetch_object()):?>
+  		while($row = $result->fetch_object()):
+
+  		// vérif s'il y a une img rapportée à cette question
+			$img = "upload/".$row->idquestion.".jpg";
+      if(file_exists($img)) :
+        echo 'proute';
+      endif; ?>
 
 			<form action="question.php" method="post" class="edit-form">
 				<input type="hidden" name="idquestion" value="<?php echo $row->idquestion ?>">
@@ -78,6 +88,13 @@ require_once('../config.php');
 						<span>no</span>
 					</label>
 				</fieldset>
+
+				<label for="image">
+
+					<span>Nouvelle image</span>
+					<input type="file">
+				</label>
+
 				<fieldset>
 					<input type="submit" value="Valider les modifs" name="editQ">
 					<a href="index.php">annuler</a>

@@ -31,10 +31,11 @@ if(isset($_SESSION['admin'])):
 							<td><?php echo $row->objet ?></td>
 							<td><a href="index.php?editQ=<?php echo $row->idquestion ?>">Éditer</a></td>
 							<td><a href="index.php?reponses=<?php echo $row->idquestion?>">Réponses</a></td>
-							<td><a href="question.php?delete=<?php echo $row->idquestion ?>" class="btn--delete" onclick="if(!confirm(\'Sûr?\')) return false;">Supprimer</a></td>
+							<td><a href="question.php?delete=<?php echo $row->idquestion ?>" class="btn--delete"  onclick="if(!confirm('Sûr?')) return false;">Supprimer</a></td>
 						</tr>
 
 		<?php endwhile;	?>
 
 					</table>
+					
 <?php endif; endif; ?>

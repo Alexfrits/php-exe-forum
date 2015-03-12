@@ -2,18 +2,40 @@
 	require_once('config.php');
 // controller qd on post une question avec le form
 	if(isset($_POST['newQuestion'])):
-		$sql = sprintf("INSERT INTO question SET question='%s', id_auteur='%s', date='%s', objet='%s', online='y'",
-					$_POST['question'],
-					$_POST['id_auteur'],
+		$sql = sprintf("INSERT INTO question SET question=%s, id_auteur=%s, date='%s', objet=%s, online='y'",
+					getSQLValueString($_POST['question'], "text"),
+					getSQLValueString($_POST['id_auteur'], "int"),
 					date("Y-m-d"),
-					$_POST['objet']
+					getSQLValueString($_POST['objet'], "text")
 					);
 		// sprintf fct mysql qui permet de formatter la requête -> %s var locale à la fct sprintf qui formatte en texte
-	$connect->query($sql);
-	// neutralise le post avec une location
-	header("location:index.php");
-	// neutralise le script le temps de la redirection, sinon script continue
-	exit;
+		$connect->query($sql);
+		echo $connect->error;
+		$last_id = $connect->insert_id;
+
+		// upload de l'image
+		if (isset($_FILES['image']['error']) AND $_FILES['image']['error'] == 0):
+			$myImg = $_FILES['image'];
+			$type = $myImg['type'];
+
+			if(array_key_exists($type, $formatsFiles)) :
+				$extension = $formatsFiles[$type];
+				$folder = "upload/";
+				$filename = $last_id;
+
+
+				$destination = $folder.$filename.$extension;
+				$file_uploaded = $myImg['tmp_name'];
+				move_uploaded_file($file_uploaded, $destination);
+			else : 
+				echo "erreur de format";
+			endif;
+		endif;
+
+		// neutralise le post avec une location
+		header("location:index.php");
+		// neutralise le script le temps de la redirection, sinon script continue
+		exit;
 	endif;
 
 // controller qd on clique sur un membre : affiche uniqut ses questions
@@ -32,7 +54,7 @@
 	endif;
 
 	 	$col = $connect->query($sql);		// col contient l'identifiant de la requête. L'objet $connect est dispo car config.php est chargée avant
-			echo $connect->error;						// affiche l'erreur s'il y en a une
+			echo $connect->error;					// affiche l'erreur s'il y en a une
 		// myPrint_r($col); // pour débug
 	?>
 	<h1>Liste des questions</h1>
@@ -50,9 +72,8 @@
 	?>
 	</ul>
 <?php // HTML conditionnel : n'affiche le form que s'il y a une session
-	if(isset($_SESSION['auteur'])) :
-		echo
-			'<form action="accueil.php" method="post" class="form--post">
+	if(isset($_SESSION['auteur'])) : ?>
+<form action="accueil.php" method="post" enctype="multipart/form-data" class="form--post">
 				<label for="objet">
 					<span>Objet:</span>
 					<input type="text" name="objet" id="objet" required>
@@ -60,8 +81,12 @@
 				<label for="question"><span>votre question</span>
 					<textarea id="question" name="question" required></textarea>
 				</label>
-				<input type="hidden" name="id_auteur" value="'.$_SESSION['auteur']->idauteurs.'">
+				<label for="image"><span>Insérez une image </span>
+					<input type="file" id="image" name="image">
+				</label>
+				<input type="hidden" name="id_auteur" value="<?php echo $_SESSION['auteur']->idauteurs ?>">
+				<label for="image">
 				<input type="submit" value="répondre" name="newQuestion">
-			</form>';
+			</form>
 
-endif; // fin du HTML conditionnel ?>
+<?php endif; // fin du HTML conditionnel ?>

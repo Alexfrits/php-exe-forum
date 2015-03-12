@@ -46,9 +46,6 @@ header {
 				float: right;
 			}
 		}
-
-	
-
 	}
 }
 
@@ -75,6 +72,7 @@ main {
 	margin-bottom: 3rem;
 	box-shadow: 0px 0px 10px 0px lighten($second-color, 20%);
 	padding: 2rem;
+	overflow: hidden;
 }
 
 .question__auth {
@@ -90,6 +88,8 @@ footer {
 	@extend header;
 	font-size: 1rem;
 	text-align: center;
+	clear: both;
+	margin-top: 3rem;
 }
 
 
@@ -97,18 +97,25 @@ footer {
 	color: $alert-color;
 }
 
+footer {
+	height: 3rem;
+	background-color: $main-color;
+}
+
 /* POST FORM
 ============================================================================*/
 .form--post {
 	width: 50%;
-	margin: 0 auto;
+	margin: 0 auto 3rem;
 	font-size: 1.5rem;
+
 
 	label,
 	fieldset {
 		display: block;
 		border: none;
 		clear: both;
+		margin-bottom: 3rem;
 	}
 
 	span {

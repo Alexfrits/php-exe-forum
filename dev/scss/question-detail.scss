@@ -1,3 +1,15 @@
 .answer {
 @extend .question;
 }
+
+[class$="question__infos"] {
+	margin-bottom: 2rem;
+}
+
+.question__infos__img {
+	float: left;
+	display: block;
+	margin-right: 2rem;
+	max-height: auto;
+	width: 20%;
+}
